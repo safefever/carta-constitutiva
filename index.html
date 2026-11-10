@@ -1,0 +1,1223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Función #12 del Director: Gobernanza y Carta Constitutiva</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Playfair+Display:wght@400;700;900&family=Montserrat:wght@300;400;600;700;900&display=swap');
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        :root {
+            --marvel-red: #E23636;
+            --marvel-blue: #0A1F44;
+            --vogue-gold: #D4AF37;
+            --vogue-black: #0A0A0A;
+            --electric-purple: #8B5CF6;
+            --neon-pink: #FF006E;
+            --cyan: #00F5FF;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--vogue-black);
+            color: #fff;
+            overflow-x: hidden;
+            min-height: 100vh;
+        }
+
+        /* ========== FONDO MARVEL ========== */
+        .marvel-bg {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -3;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(226, 54, 54, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(139, 92, 246, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 50% 80%, rgba(0, 245, 255, 0.1) 0%, transparent 50%),
+                var(--vogue-black);
+        }
+
+        .halftone {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -2;
+            opacity: 0.04;
+            background-image: radial-gradient(circle, #fff 1px, transparent 1px);
+            background-size: 6px 6px;
+            animation: halftoneMove 20s linear infinite;
+        }
+
+        @keyframes halftoneMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(6px, 6px); }
+        }
+
+        .action-lines {
+            position: fixed;
+            top: 50%; left: 50%;
+            width: 300%; height: 300%;
+            transform: translate(-50%, -50%);
+            z-index: -2;
+            opacity: 0.025;
+            background: repeating-conic-gradient(
+                from 0deg at 50% 50%,
+                transparent 0deg,
+                rgba(255,255,255,0.5) 0.5deg,
+                transparent 1deg
+            );
+            animation: rotateLines 45s linear infinite;
+        }
+
+        @keyframes rotateLines {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        /* ========== PARTÍCULAS ========== */
+        .particles {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px; height: 4px;
+            border-radius: 50%;
+            animation: particleFloat 12s infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; background: var(--vogue-gold); animation-delay: 0s; }
+        .particle:nth-child(2) { left: 25%; background: var(--neon-pink); animation-delay: 2s; }
+        .particle:nth-child(3) { left: 40%; background: var(--cyan); animation-delay: 4s; }
+        .particle:nth-child(4) { left: 55%; background: var(--vogue-gold); animation-delay: 1s; }
+        .particle:nth-child(5) { left: 70%; background: var(--electric-purple); animation-delay: 3s; }
+        .particle:nth-child(6) { left: 85%; background: var(--marvel-red); animation-delay: 5s; }
+        .particle:nth-child(7) { left: 95%; background: var(--cyan); animation-delay: 2.5s; }
+
+        @keyframes particleFloat {
+            0%, 100% { transform: translateY(100vh) scale(0); opacity: 0; }
+            10% { opacity: 0.8; }
+            90% { opacity: 0.8; }
+            50% { transform: translateY(-10vh) scale(1.5); }
+        }
+
+        /* ========== SUPERHÉROE VOLADOR ========== */
+        .flying-hero {
+            position: fixed;
+            top: 15%;
+            z-index: 50;
+            animation: flyAcross 18s linear infinite;
+            filter: drop-shadow(0 0 20px rgba(226, 54, 54, 0.6));
+        }
+
+        @keyframes flyAcross {
+            0% { left: -200px; transform: translateY(0) rotate(-5deg); }
+            25% { transform: translateY(-30px) rotate(0deg); }
+            50% { transform: translateY(10px) rotate(-3deg); }
+            75% { transform: translateY(-20px) rotate(2deg); }
+            100% { left: calc(100% + 200px); transform: translateY(0) rotate(-5deg); }
+        }
+
+        .flying-hero svg { width: 120px; height: 80px; }
+
+        /* Líneas de velocidad */
+        .speed-lines {
+            position: fixed;
+            top: 18%;
+            height: 40px;
+            width: 200px;
+            z-index: 49;
+            animation: speedMove 18s linear infinite;
+            opacity: 0.4;
+        }
+
+        @keyframes speedMove {
+            0% { left: -300px; }
+            100% { left: calc(100% + 100px); }
+        }
+
+        /* ========== SUPERHÉROE CAMINANTE ========== */
+        .walking-hero {
+            position: fixed;
+            bottom: 8%;
+            z-index: 50;
+            animation: walkAcross 25s linear infinite;
+        }
+
+        @keyframes walkAcross {
+            0% { left: -150px; }
+            100% { left: calc(100% + 150px); }
+        }
+
+        .walking-hero svg {
+            width: 80px; height: 140px;
+            animation: heroWalk 0.6s ease-in-out infinite;
+        }
+
+        @keyframes heroWalk {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-8px); }
+        }
+
+        /* ========== DIRECTOR CAMINANDO ========== */
+        .walking-director {
+            position: fixed;
+            bottom: 5%;
+            z-index: 49;
+            animation: directorWalk 30s linear infinite;
+            animation-delay: 5s;
+        }
+
+        @keyframes directorWalk {
+            0% { right: -150px; }
+            100% { right: calc(100% + 150px); }
+        }
+
+        .walking-director svg {
+            width: 70px; height: 130px;
+            animation: directorBounce 0.7s ease-in-out infinite;
+        }
+
+        @keyframes directorBounce {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            25% { transform: translateY(-5px) rotate(-2deg); }
+            75% { transform: translateY(-3px) rotate(2deg); }
+        }
+
+        /* ========== ESTUDIANTES LEVANTANDO MANOS ========== */
+        .students-scene {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 200px;
+            z-index: 48;
+            pointer-events: none;
+            overflow: hidden;
+        }
+
+        .student {
+            position: absolute;
+            bottom: 0;
+            animation: studentRaise 2s ease-in-out infinite;
+        }
+
+        .student:nth-child(1) { left: 5%; animation-delay: 0s; }
+        .student:nth-child(2) { left: 15%; animation-delay: 0.3s; }
+        .student:nth-child(3) { left: 25%; animation-delay: 0.6s; }
+        .student:nth-child(4) { left: 70%; animation-delay: 0.2s; }
+        .student:nth-child(5) { left: 80%; animation-delay: 0.5s; }
+        .student:nth-child(6) { left: 90%; animation-delay: 0.8s; }
+
+        @keyframes studentRaise {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .student svg { width: 60px; height: 100px; }
+
+        /* ========== HEADER VOGUE ========== */
+        .vogue-header {
+            text-align: center;
+            padding: 80px 40px 50px;
+            position: relative;
+            border-bottom: 3px solid var(--vogue-gold);
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(10px);
+        }
+
+        .vogue-header::before {
+            content: '★ LEADERSHIP EDITION 2026 ★';
+            position: absolute;
+            top: 25px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 11px;
+            letter-spacing: 8px;
+            color: var(--vogue-gold);
+            text-transform: uppercase;
+        }
+
+        .vogue-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 68px;
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #fff 0%, var(--vogue-gold) 50%, #fff 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-transform: uppercase;
+            letter-spacing: -1px;
+        }
+
+        .vogue-subtitle {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 32px;
+            letter-spacing: 10px;
+            color: var(--marvel-red);
+            text-transform: uppercase;
+        }
+
+        .vogue-tagline {
+            font-size: 13px;
+            letter-spacing: 4px;
+            color: rgba(255,255,255,0.6);
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        /* ========== HERO IMAGE ========== */
+        .hero-image-section {
+            position: relative;
+            height: 450px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 40px;
+            border: 2px solid var(--vogue-gold);
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.5);
+        }
+
+        .hero-image-bg {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: 
+                linear-gradient(135deg, rgba(226, 54, 54, 0.3) 0%, transparent 50%),
+                linear-gradient(225deg, rgba(10, 31, 68, 0.5) 0%, transparent 50%),
+                linear-gradient(45deg, rgba(139, 92, 246, 0.2) 0%, transparent 50%);
+            animation: heroPulse 4s ease-in-out infinite;
+        }
+
+        @keyframes heroPulse {
+            0%, 100% { opacity: 0.8; }
+            50% { opacity: 1; }
+        }
+
+        .hero-image-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+        }
+
+        .big-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 180px;
+            line-height: 1;
+            background: linear-gradient(180deg, var(--vogue-gold) 0%, var(--marvel-red) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: numberGlow 3s ease-in-out infinite;
+        }
+
+        @keyframes numberGlow {
+            0%, 100% { filter: drop-shadow(0 0 20px rgba(212, 175, 55, 0.3)); }
+            50% { filter: drop-shadow(0 0 40px rgba(212, 175, 55, 0.6)); }
+        }
+
+        .hero-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 32px;
+            font-weight: 700;
+            color: #fff;
+            margin-top: -10px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+        }
+
+        .hero-sub {
+            font-size: 13px;
+            color: var(--cyan);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-top: 10px;
+        }
+
+        .corner-decor {
+            position: absolute;
+            width: 50px; height: 50px;
+            border: 3px solid var(--vogue-gold);
+            z-index: 3;
+        }
+
+        .corner-decor.tl { top: 15px; left: 15px; border-right: none; border-bottom: none; }
+        .corner-decor.tr { top: 15px; right: 15px; border-left: none; border-bottom: none; }
+        .corner-decor.bl { bottom: 15px; left: 15px; border-right: none; border-top: none; }
+        .corner-decor.br { bottom: 15px; right: 15px; border-left: none; border-top: none; }
+
+        /* ========== BADGES MARVEL ========== */
+        .marvel-badges {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            padding: 40px;
+            flex-wrap: wrap;
+            z-index: 10;
+            position: relative;
+        }
+
+        .marvel-badge {
+            background: var(--marvel-red);
+            color: #fff;
+            padding: 12px 30px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            clip-path: polygon(10% 0%, 100% 0%, 90% 100%, 0% 100%);
+            animation: badgePulse 2s ease-in-out infinite;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .marvel-badge:hover {
+            transform: scale(1.1);
+            background: var(--neon-pink);
+        }
+
+        .marvel-badge:nth-child(2) { background: var(--marvel-blue); animation-delay: 0.5s; }
+        .marvel-badge:nth-child(3) { background: var(--electric-purple); animation-delay: 1s; }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        /* ========== BOTONES INTERACTIVOS ========== */
+        .buttons-section {
+            padding: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+            z-index: 10;
+            position: relative;
+        }
+
+        .section-label {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 14px;
+            letter-spacing: 8px;
+            color: var(--vogue-gold);
+            text-align: center;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+        }
+
+        .interactive-btn {
+            display: block;
+            width: 100%;
+            padding: 22px 30px;
+            margin-bottom: 12px;
+            background: rgba(255,255,255,0.03);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-left: 5px solid var(--marvel-red);
+            color: #fff;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 15px;
+            font-weight: 700;
+            text-align: left;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            z-index: 10;
+        }
+
+        .interactive-btn::before {
+            content: '';
+            position: absolute;
+            top: 0; left: -100%;
+            width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(226, 54, 54, 0.1), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .interactive-btn:hover::before { left: 100%; }
+
+        .interactive-btn:hover {
+            border-color: var(--marvel-red);
+            background: rgba(226, 54, 54, 0.05);
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(226, 54, 54, 0.2);
+        }
+
+        .interactive-btn.active {
+            border-color: var(--vogue-gold);
+            border-left-color: var(--vogue-gold);
+            background: rgba(212, 175, 55, 0.05);
+        }
+
+        .btn-number {
+            display: inline-block;
+            width: 32px; height: 32px;
+            background: var(--marvel-red);
+            color: #fff;
+            text-align: center;
+            line-height: 32px;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            margin-right: 12px;
+            clip-path: polygon(20% 0%, 100% 0%, 80% 100%, 0% 100%);
+        }
+
+        .interactive-btn.active .btn-number {
+            background: var(--vogue-gold);
+            color: var(--vogue-black);
+        }
+
+        .btn-arrow {
+            float: right;
+            transition: transform 0.3s ease;
+            font-size: 18px;
+        }
+
+        .interactive-btn.active .btn-arrow { transform: rotate(180deg); }
+
+        /* ========== PANELES DE CONTENIDO ========== */
+        .content-panel {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, padding 0.6s ease;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.05);
+            border-top: none;
+            margin-bottom: 12px;
+            margin-top: -12px;
+            z-index: 10;
+            position: relative;
+        }
+
+        .content-panel.open {
+            max-height: 500px;
+            padding: 25px 30px;
+        }
+
+        .panel-content {
+            opacity: 0;
+            transform: translateY(-10px);
+            transition: all 0.4s ease 0.2s;
+        }
+
+        .content-panel.open .panel-content {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .panel-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: var(--vogue-gold);
+        }
+
+        .panel-content p {
+            font-size: 13px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.7);
+            margin-bottom: 12px;
+        }
+
+        .info-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .info-list li {
+            padding: 6px 0;
+            padding-left: 22px;
+            position: relative;
+            font-size: 12px;
+            color: rgba(255,255,255,0.8);
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .info-list li::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--marvel-red);
+            font-size: 9px;
+            top: 8px;
+        }
+
+        .highlight-box {
+            background: rgba(226, 54, 54, 0.1);
+            border-left: 3px solid var(--marvel-red);
+            padding: 12px 18px;
+            margin-top: 12px;
+            font-size: 12px;
+            color: rgba(255,255,255,0.9);
+            font-style: italic;
+        }
+
+        /* ========== GRID ECLÉCTICO ========== */
+        .eclectic-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3px;
+            padding: 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            z-index: 10;
+            position: relative;
+        }
+
+        .eclectic-item {
+            padding: 35px 20px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            cursor: pointer;
+        }
+
+        .eclectic-item:nth-child(1) { background: rgba(226, 54, 54, 0.15); }
+        .eclectic-item:nth-child(2) { background: rgba(10, 31, 68, 0.4); }
+        .eclectic-item:nth-child(3) { background: rgba(139, 92, 246, 0.15); }
+        .eclectic-item:nth-child(4) { background: rgba(0, 245, 255, 0.08); }
+        .eclectic-item:nth-child(5) { background: rgba(255, 0, 110, 0.15); }
+        .eclectic-item:nth-child(6) { background: rgba(212, 175, 55, 0.15); }
+
+        .eclectic-item:hover {
+            transform: scale(1.05);
+            z-index: 20;
+        }
+
+        .ec-icon {
+            font-size: 42px;
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .eclectic-item h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 18px;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            text-transform: uppercase;
+        }
+
+        .eclectic-item p {
+            font-size: 11px;
+            color: rgba(255,255,255,0.6);
+            line-height: 1.6;
+        }
+
+        /* ========== SECCIÓN DE CRÉDITOS ========== */
+        .credit-section {
+            text-align: center;
+            padding: 60px 40px;
+            border-top: 3px solid var(--vogue-gold);
+            border-bottom: 3px solid var(--vogue-gold);
+            margin: 40px;
+            position: relative;
+            z-index: 10;
+            background: rgba(10, 10, 10, 0.8);
+            backdrop-filter: blur(10px);
+        }
+
+        .credit-section::before {
+            content: '✦';
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--vogue-black);
+            padding: 0 20px;
+            color: var(--vogue-gold);
+            font-size: 24px;
+        }
+
+        .credit-label {
+            font-size: 11px;
+            letter-spacing: 6px;
+            color: rgba(255,255,255,0.4);
+            text-transform: uppercase;
+            margin-bottom: 15px;
+        }
+
+        .credit-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 36px;
+            font-weight: 900;
+            background: linear-gradient(135deg, var(--vogue-gold) 0%, #fff 50%, var(--vogue-gold) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+
+        .credit-role {
+            font-size: 13px;
+            color: var(--cyan);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        .credit-ai {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(139, 92, 246, 0.15);
+            border: 1px solid rgba(139, 92, 246, 0.3);
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-size: 13px;
+            color: var(--electric-purple);
+            font-weight: 600;
+        }
+
+        .ai-icon {
+            width: 30px; height: 30px;
+            background: var(--electric-purple);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 14px;
+            animation: aiPulse 2s infinite;
+        }
+
+        @keyframes aiPulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.4); }
+            50% { box-shadow: 0 0 0 10px rgba(139, 92, 246, 0); }
+        }
+
+        /* ========== FOOTER ========== */
+        .vogue-footer {
+            text-align: center;
+            padding: 40px;
+            font-size: 11px;
+            color: rgba(255,255,255,0.3);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            z-index: 10;
+            position: relative;
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 768px) {
+            .vogue-title { font-size: 38px; }
+            .vogue-subtitle { font-size: 20px; letter-spacing: 6px; }
+            .big-number { font-size: 100px; }
+            .hero-text { font-size: 20px; }
+            .eclectic-grid { grid-template-columns: 1fr; }
+            .marvel-badges { flex-direction: column; align-items: center; }
+            .credit-name { font-size: 24px; }
+            .flying-hero svg { width: 80px; height: 55px; }
+            .walking-hero svg { width: 50px; height: 90px; }
+            .walking-director svg { width: 45px; height: 85px; }
+            .student svg { width: 40px; height: 70px; }
+        }
+
+        /* Scroll reveal */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mouse trail */
+        .trail {
+            position: fixed;
+            width: 6px; height: 6px;
+            background: var(--vogue-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+            opacity: 0.7;
+            transition: all 0.4s ease;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondo Marvel -->
+    <div class="marvel-bg"></div>
+    <div class="halftone"></div>
+    <div class="action-lines"></div>
+    <div class="particles">
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+        <div class="particle"></div>
+    </div>
+
+    <!-- ========== SUPERHÉROE VOLADOR ========== -->
+    <div class="flying-hero">
+        <svg viewBox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 30 35 Q 10 40 5 55 Q 15 50 30 45 Z" fill="#E23636" opacity="0.9">
+                <animate attributeName="d" 
+                    values="M 30 35 Q 10 40 5 55 Q 15 50 30 45 Z;
+                            M 30 35 Q 5 38 0 50 Q 12 48 30 45 Z;
+                            M 30 35 Q 10 40 5 55 Q 15 50 30 45 Z" 
+                    dur="0.8s" repeatCount="indefinite"/>
+            </path>
+            <ellipse cx="55" cy="40" rx="18" ry="12" fill="#0A1F44"/>
+            <polygon points="55,33 58,38 55,43 52,38" fill="#D4AF37"/>
+            <circle cx="75" cy="35" r="10" fill="#FFD4A3"/>
+            <path d="M 68 32 Q 75 28 82 32 Q 80 36 75 36 Q 70 36 68 32 Z" fill="#E23636"/>
+            <ellipse cx="72" cy="33" rx="2" ry="1.5" fill="#fff"/>
+            <ellipse cx="78" cy="33" rx="2" ry="1.5" fill="#fff"/>
+            <path d="M 40 38 Q 25 35 15 30" stroke="#0A1F44" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M 40 42 Q 25 45 15 50" stroke="#0A1F44" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M 50 48 Q 45 58 40 65" stroke="#0A1F44" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <path d="M 60 48 Q 62 58 65 65" stroke="#0A1F44" stroke-width="5" fill="none" stroke-linecap="round"/>
+            <line x1="5" y1="38" x2="-10" y2="38" stroke="#D4AF37" stroke-width="1" opacity="0.5">
+                <animate attributeName="x2" values="-10;-20;-10" dur="0.3s" repeatCount="indefinite"/>
+            </line>
+            <line x1="5" y1="42" x2="-8" y2="42" stroke="#D4AF37" stroke-width="1" opacity="0.3">
+                <animate attributeName="x2" values="-8;-18;-8" dur="0.4s" repeatCount="indefinite"/>
+            </line>
+        </svg>
+    </div>
+
+    <!-- Líneas de velocidad -->
+    <svg class="speed-lines" viewBox="0 0 200 40" xmlns="http://www.w3.org/2000/svg">
+        <line x1="0" y1="10" x2="80" y2="10" stroke="#D4AF37" stroke-width="2" opacity="0.4"/>
+        <line x1="20" y1="20" x2="120" y2="20" stroke="#E23636" stroke-width="1" opacity="0.3"/>
+        <line x1="10" y1="30" x2="90" y2="30" stroke="#D4AF37" stroke-width="1.5" opacity="0.3"/>
+    </svg>
+
+    <!-- ========== SUPERHÉROE CAMINANTE ========== -->
+    <div class="walking-hero">
+        <svg viewBox="0 0 80 140" xmlns="http://www.w3.org/2000/svg">
+            <path d="M 30 50 Q 20 70 15 90 Q 25 85 35 70 Z" fill="#8B5CF6" opacity="0.8">
+                <animate attributeName="d" 
+                    values="M 30 50 Q 20 70 15 90 Q 25 85 35 70 Z;
+                            M 30 50 Q 18 68 12 88 Q 23 83 35 70 Z;
+                            M 30 50 Q 20 70 15 90 Q 25 85 35 70 Z" 
+                    dur="1s" repeatCount="indefinite"/>
+            </path>
+            <circle cx="40" cy="20" r="12" fill="#FFD4A3"/>
+            <path d="M 30 16 Q 40 12 50 16 Q 48 22 40 22 Q 32 22 30 16 Z" fill="#8B5CF6"/>
+            <circle cx="36" cy="18" r="2" fill="#fff"/>
+            <circle cx="44" cy="18" r="2" fill="#fff"/>
+            <rect x="30" y="32" width="20" height="30" rx="5" fill="#1a1a2e"/>
+            <circle cx="40" cy="45" r="5" fill="#D4AF37"/>
+            <rect x="20" y="35" width="8" height="25" rx="4" fill="#1a1a2e">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="-5 24 35; 5 24 35; -5 24 35" dur="0.6s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="52" y="35" width="8" height="25" rx="4" fill="#1a1a2e">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="5 56 35; -5 56 35; 5 56 35" dur="0.6s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="30" y="62" width="9" height="35" rx="4" fill="#0A1F44">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="-10 34 62; 10 34 62; -10 34 62" dur="0.6s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="41" y="62" width="9" height="35" rx="4" fill="#0A1F44">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="10 45 62; -10 45 62; 10 45 62" dur="0.6s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="28" y="95" width="12" height="8" rx="3" fill="#E23636"/>
+            <rect x="40" y="95" width="12" height="8" rx="3" fill="#E23636"/>
+        </svg>
+    </div>
+
+    <!-- ========== DIRECTOR CAMINANDO ========== -->
+    <div class="walking-director">
+        <svg viewBox="0 0 70 130" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="35" cy="18" r="11" fill="#FFD4A3"/>
+            <path d="M 24 15 Q 35 5 46 15 Q 44 10 35 8 Q 26 10 24 15 Z" fill="#2D1B0E"/>
+            <circle cx="31" cy="17" r="1.5" fill="#333"/>
+            <circle cx="39" cy="17" r="1.5" fill="#333"/>
+            <path d="M 31 22 Q 35 25 39 22" stroke="#333" stroke-width="1" fill="none"/>
+            <circle cx="31" cy="17" r="4" stroke="#333" stroke-width="1" fill="none"/>
+            <circle cx="39" cy="17" r="4" stroke="#333" stroke-width="1" fill="none"/>
+            <line x1="35" y1="17" x2="35" y2="17" stroke="#333" stroke-width="1"/>
+            <rect x="25" y="30" width="20" height="35" rx="3" fill="#1a1a2e"/>
+            <polygon points="35,30 37,35 35,50 33,35" fill="#E23636"/>
+            <path d="M 28 30 L 35 35 L 42 30" stroke="#fff" stroke-width="1.5" fill="none"/>
+            <rect x="15" y="32" width="8" height="22" rx="4" fill="#1a1a2e">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="-8 19 32; 8 19 32; -8 19 32" dur="0.7s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="47" y="32" width="8" height="22" rx="4" fill="#1a1a2e">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="8 51 32; -8 51 32; 8 51 32" dur="0.7s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="48" y="50" width="14" height="10" rx="2" fill="#8B4513">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="5 55 50; -5 55 50; 5 55 50" dur="0.7s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="52" y="48" width="6" height="3" rx="1" fill="#D4AF37"/>
+            <rect x="27" y="65" width="8" height="30" rx="3" fill="#0A1F44">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="-12 31 65; 12 31 65; -12 31 65" dur="0.7s" repeatCount="indefinite"/>
+            </rect>
+            <rect x="37" y="65" width="8" height="30" rx="3" fill="#0A1F44">
+                <animateTransform attributeName="transform" type="rotate" 
+                    values="12 41 65; -12 41 65; 12 41 65" dur="0.7s" repeatCount="indefinite"/>
+            </rect>
+            <ellipse cx="30" cy="96" rx="6" ry="3" fill="#1a1a1a"/>
+            <ellipse cx="42" cy="96" rx="6" ry="3" fill="#1a1a1a"/>
+        </svg>
+    </div>
+
+    <!-- ========== ESTUDIANTES LEVANTANDO MANOS ========== -->
+    <div class="students-scene">
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#FFD4A3"/>
+                <path d="M 20 12 Q 30 3 40 12 Q 38 8 30 6 Q 22 8 20 12 Z" fill="#4A2C1A"/>
+                <circle cx="27" cy="14" r="1.5" fill="#333"/>
+                <circle cx="33" cy="14" r="1.5" fill="#333"/>
+                <path d="M 27 19 Q 30 21 33 19" stroke="#333" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#4FC3F7"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#4FC3F7">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 17 28; -30 17 28; 0 17 28" dur="1.5s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#4FC3F7">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 43 28; -160 43 28; -140 43 28; -160 43 28; 0 43 28" dur="2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#8D5524"/>
+                <path d="M 20 10 Q 30 0 40 10 Q 42 15 40 18 Q 30 12 20 18 Q 18 15 20 10 Z" fill="#1a1a1a"/>
+                <circle cx="27" cy="14" r="1.5" fill="#fff"/>
+                <circle cx="33" cy="14" r="1.5" fill="#fff"/>
+                <path d="M 27 19 Q 30 22 33 19" stroke="#fff" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#FF6584"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#FF6584">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 17 28; -150 17 28; -130 17 28; -150 17 28; 0 17 28" dur="1.8s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#FF6584"/>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#FFD4A3"/>
+                <path d="M 18 12 Q 30 2 42 12 L 42 20 Q 30 15 18 20 Z" fill="#D4AF37"/>
+                <circle cx="27" cy="14" r="1.5" fill="#333"/>
+                <circle cx="33" cy="14" r="1.5" fill="#333"/>
+                <path d="M 27 19 Q 30 21 33 19" stroke="#333" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#00BFA6"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#00BFA6"/>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#00BFA6">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 43 28; -170 43 28; -150 43 28; -170 43 28; 0 43 28" dur="2.2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#C68642"/>
+                <path d="M 20 10 Q 30 2 40 10 Q 38 6 30 5 Q 22 6 20 10 Z" fill="#2D1B0E"/>
+                <circle cx="27" cy="14" r="1.5" fill="#333"/>
+                <circle cx="33" cy="14" r="1.5" fill="#333"/>
+                <path d="M 27 19 Q 30 22 33 19" stroke="#333" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#FFB347"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#FFB347">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 17 28; -140 17 28; -120 17 28; -140 17 28; 0 17 28" dur="1.6s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#FFB347">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 43 28; -160 43 28; -140 43 28; -160 43 28; 0 43 28" dur="2.1s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#FFD4A3"/>
+                <path d="M 20 12 Q 30 3 40 12 Q 38 8 30 6 Q 22 8 20 12 Z" fill="#8B4513"/>
+                <circle cx="27" cy="14" r="1.5" fill="#333"/>
+                <circle cx="33" cy="14" r="1.5" fill="#333"/>
+                <path d="M 27 19 Q 30 21 33 19" stroke="#333" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#8B5CF6"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#8B5CF6"/>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#8B5CF6">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 43 28; -155 43 28; -135 43 28; -155 43 28; 0 43 28" dur="1.9s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#1a1a2e"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+        <div class="student">
+            <svg viewBox="0 0 60 100" xmlns="http://www.w3.org/2000/svg">
+                <circle cx="30" cy="15" r="10" fill="#8D5524"/>
+                <path d="M 18 10 Q 30 0 42 10 L 42 22 Q 30 16 18 22 Z" fill="#1a1a1a"/>
+                <circle cx="27" cy="14" r="1.5" fill="#fff"/>
+                <circle cx="33" cy="14" r="1.5" fill="#fff"/>
+                <path d="M 27 19 Q 30 22 33 19" stroke="#fff" stroke-width="1" fill="none"/>
+                <rect x="22" y="26" width="16" height="25" rx="3" fill="#E23636"/>
+                <rect x="14" y="28" width="6" height="18" rx="3" fill="#E23636">
+                    <animateTransform attributeName="transform" type="rotate" 
+                        values="0 17 28; -165 17 28; -145 17 28; -165 17 28; 0 17 28" dur="2s" repeatCount="indefinite"/>
+                </rect>
+                <rect x="40" y="28" width="6" height="18" rx="3" fill="#E23636"/>
+                <rect x="24" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <rect x="32" y="51" width="6" height="25" rx="3" fill="#0A1F44"/>
+                <ellipse cx="27" cy="78" rx="5" ry="3" fill="#333"/>
+                <ellipse cx="35" cy="78" rx="5" ry="3" fill="#333"/>
+            </svg>
+        </div>
+    </div>
+
+    <!-- ========== HEADER VOGUE ========== -->
+    <header class="vogue-header">
+        <div class="vogue-title">Gobernanza</div>
+        <div class="vogue-subtitle">Carta Constitutiva</div>
+        <div class="vogue-tagline">Función #12 del Director · Liderazgo Escolar · Edición 2026</div>
+    </header>
+
+    <!-- ========== HERO IMAGE ========== -->
+    <section class="hero-image-section reveal">
+        <div class="hero-image-bg"></div>
+        <div class="corner-decor tl"></div>
+        <div class="corner-decor tr"></div>
+        <div class="corner-decor bl"></div>
+        <div class="corner-decor br"></div>
+        <div class="hero-image-content">
+            <div class="big-number">#12</div>
+            <div class="hero-text">El Poder del Director</div>
+            <div class="hero-sub">Gobernanza · Liderazgo · Transformación</div>
+        </div>
+    </section>
+
+    <!-- ========== BADGES MARVEL ========== -->
+    <div class="marvel-badges reveal">
+        <div class="marvel-badge">⚡ Marco Legal</div>
+        <div class="marvel-badge">🛡️ Preparación</div>
+        <div class="marvel-badge">🎯 Viabilidad</div>
+    </div>
+
+    <!-- ========== BOTONES INTERACTIVOS ========== -->
+    <section class="buttons-section">
+        <div class="section-label">— Selecciona una Sección —</div>
+
+        <button class="interactive-btn" onclick="togglePanel(this, 'panel1')">
+            <span class="btn-number">01</span>
+            Definición y Marco Legal
+            <span class="btn-arrow">▼</span>
+        </button>
+        <div class="content-panel" id="panel1">
+            <div class="panel-content">
+                <h3>⚖️ Fundamento Jurídico</h3>
+                <p>La Carta Constitutiva es el documento fundacional que establece las bases legales, operativas y académicas de las Escuelas Públicas Alianza en Puerto Rico.</p>
+                <ul class="info-list">
+                    <li><strong>Ley de Reforma Educativa:</strong> Ley 85-2018 — marco legal principal</li>
+                    <li><strong>Formulario Oficial:</strong> Descripción de Puesto DE-16</li>
+                    <li><strong>Propósito:</strong> Operación y administración de Escuelas Públicas Alianza</li>
+                    <li><strong>Alcance:</strong> Define responsabilidades del Director como líder institucional</li>
+                </ul>
+                <div class="highlight-box">
+                    "El Director es el arquitecto legal de la institución. Su conocimiento del marco normativo es la base del liderazgo efectivo."
+                </div>
+            </div>
+        </div>
+
+        <button class="interactive-btn" onclick="togglePanel(this, 'panel2')">
+            <span class="btn-number">02</span>
+            Preparación y Revisión
+            <span class="btn-arrow">▼</span>
+        </button>
+        <div class="content-panel" id="panel2">
+            <div class="panel-content">
+                <h3>📝 Proceso Colaborativo</h3>
+                <p>La elaboración de la Carta Constitutiva requiere un proceso participativo que involucre a todos los stakeholders de la comunidad educativa.</p>
+                <ul class="info-list">
+                    <li><strong>Colaboración conjunta:</strong> Consejo Escolar como órgano rector</li>
+                    <li><strong>Participación activa:</strong> Comunidad escolar completa</li>
+                    <li><strong>Validación de términos:</strong> Propuesta educativa revisada</li>
+                    <li><strong>Transparencia:</strong> Proceso abierto y documentado</li>
+                </ul>
+                <div class="highlight-box">
+                    "La gobernanza compartida no es una opción, es una obligación del líder educativo moderno."
+                </div>
+            </div>
+        </div>
+
+        <button class="interactive-btn" onclick="togglePanel(this, 'panel3')">
+            <span class="btn-number">03</span>
+            Viabilidad y Cumplimiento
+            <span class="btn-arrow">▼</span>
+        </button>
+        <div class="content-panel" id="panel3">
+            <div class="panel-content">
+                <h3>✅ Sostenibilidad Institucional</h3>
+                <p>Garantizar el cumplimiento normativo y la viabilidad a largo plazo es responsabilidad directa del Director de Escuela.</p>
+                <ul class="info-list">
+                    <li><strong>Cumplimiento legal:</strong> Leyes y reglamentos vigentes</li>
+                    <li><strong>Supervisión de metas:</strong> Indicadores de desempeño (KPIs)</li>
+                    <li><strong>Evaluación continua:</strong> Autorizador y Secretario de Educación</li>
+                    <li><strong>Rendición de cuentas:</strong> Reportes periódicos y auditorías</li>
+                </ul>
+                <div class="highlight-box">
+                    "El cumplimiento no es el techo, es el piso. El verdadero liderazgo va más allá de lo requerido."
+                </div>
+            </div>
+        </div>
+
+        <button class="interactive-btn" onclick="togglePanel(this, 'panel4')">
+            <span class="btn-number">04</span>
+            Liderazgo Transformacional
+            <span class="btn-arrow">▼</span>
+        </button>
+        <div class="content-panel" id="panel4">
+            <div class="panel-content">
+                <h3>👑 El Director como Superhéroe Educativo</h3>
+                <p>El liderazgo educativo del siglo XXI requiere competencias que van más allá de la administración tradicional.</p>
+                <ul class="info-list">
+                    <li><strong>Visión estratégica:</strong> Anticipar el futuro educativo</li>
+                    <li><strong>Gobernanza colaborativa:</strong> Decisiones compartidas</li>
+                    <li><strong>Innovación tecnológica:</strong> IA como apoyo pedagógico</li>
+                    <li><strong>Ética e integridad:</strong> Modelar valores institucionales</li>
+                    <li><strong>Desarrollo del talento:</strong> Formar otros líderes</li>
+                </ul>
+                <div class="highlight-box">
+                    "Cada Director es un superhéroe sin capa. Su poder transformador cambia vidas y construye futuros."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ========== GRID ECLÉCTICO ========== -->
+    <section class="eclectic-grid reveal">
+        <div class="eclectic-item">
+            <span class="ec-icon">⚡</span>
+            <h4>Poder Legal</h4>
+            <p>Ley 85-2018 como fundamento de toda acción institucional</p>
+        </div>
+        <div class="eclectic-item">
+            <span class="ec-icon">🎭</span>
+            <h4>Gobernanza</h4>
+            <p>Consejo Escolar como órgano de decisión colectiva</p>
+        </div>
+        <div class="eclectic-item">
+            <span class="ec-icon">💎</span>
+            <h4>Excelencia</h4>
+            <p>Estándares de calidad que definen la institución</p>
+        </div>
+        <div class="eclectic-item">
+            <span class="ec-icon">🔮</span>
+            <h4>Visión 2026</h4>
+            <p>Innovación, IA y transformación digital educativa</p>
+        </div>
+        <div class="eclectic-item">
+            <span class="ec-icon">🦸</span>
+            <h4>Liderazgo</h4>
+            <p>El Director como agente de cambio transformador</p>
+        </div>
+        <div class="eclectic-item">
+            <span class="ec-icon">👑</span>
+            <h4>Legado</h4>
+            <p>Construir instituciones que trasciendan generaciones</p>
+        </div>
+    </section>
+
+    <!-- ========== CRÉDITOS ========== -->
+    <section class="credit-section reveal">
+        <div class="credit-label">Diseñado y Dirigido por</div>
+        <div class="credit-name">Dr. Enrique Cordero Soto</div>
+        <div class="credit-role">Superintendente · Profesor Universitario · Líder Educativo</div>
+        <div class="credit-ai">
+            <div class="ai-icon">🤖</div>
+            <span>Desarrollado con Inteligencia Artificial · Qwen</span>
+        </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="vogue-footer">
+        ★ Función #12 del Director: Gobernanza y Carta Constitutiva · Marvel Leadership Edition 2026 ★
+    </footer>
+
+    <script>
+        // Toggle panels
+        function togglePanel(btn, panelId) {
+            const panel = document.getElementById(panelId);
+            const isOpen = panel.classList.contains('open');
+            
+            document.querySelectorAll('.content-panel').forEach(p => p.classList.remove('open'));
+            document.querySelectorAll('.interactive-btn').forEach(b => b.classList.remove('active'));
+            
+            if (!isOpen) {
+                panel.classList.add('open');
+                btn.classList.add('active');
+            }
+        }
+
+        // Scroll reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Mouse trail
+        document.addEventListener('mousemove', (e) => {
+            const trail = document.createElement('div');
+            trail.className = 'trail';
+            trail.style.left = e.clientX + 'px';
+            trail.style.top = e.clientY + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => {
+                trail.style.opacity = '0';
+                trail.style.transform = 'scale(0)';
+            }, 100);
+            
+            setTimeout(() => trail.remove(), 500);
+        });
+
+        // Auto-open first panel
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const firstBtn = document.querySelector('.interactive-btn');
+                if (firstBtn) togglePanel(firstBtn, 'panel1');
+            }, 1500);
+        });
+    </script>
+</body>
+</html>
